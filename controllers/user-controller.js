@@ -13,7 +13,7 @@ const userController = {
         })
     },
     getOneUser(req,res) {
-        User.findOne({ _id: req.params.id })
+        User.findOne({ _id: req.params.userId })
         .select('-__v')
         .populate('friends')
         .populate('thoughts')
@@ -39,7 +39,7 @@ const userController = {
         })
     },
     updateUser(req,res) {
-        User.findOneAndUpdate({_id:req.params.id},{$set:req.body},{runValidators:true,new:true})
+        User.findOneAndUpdate({_id:req.params.userId},{$set:req.body},{runValidators:true,new:true})
         .then((dbUserData) => {
             if(!dbUserData){
                 return re.status(404).json({ message: 'Could not find user with this id.' })
@@ -91,3 +91,5 @@ const userController = {
         })
     }
 }
+
+module.exports = userController

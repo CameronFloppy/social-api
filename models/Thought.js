@@ -4,7 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const { time } = require('console');
 
 const thoughtSchema = new Schema({
-    thoguhtText: {
+    thoughtText: {
         type: String,
         required: true,
         minlength: 1,
@@ -30,7 +30,7 @@ const thoughtSchema = new Schema({
 );
 
 
-thoughtSchema.virtual('reactionCount').get( () => {
+thoughtSchema.virtual('reactionCount').get( function() {
     return this.reactions.length;
 })
 
